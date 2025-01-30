@@ -3,7 +3,7 @@
 public class Hangman
 {
     private readonly List<string> _wordList;
-    private int _maxLives = 6;
+    private int _maxLives = 5;
     private char _guess;
 
     private bool _win = false;
@@ -86,6 +86,11 @@ public class Hangman
                 Console.WriteLine("Correct!");
                 Console.ResetColor();
             }
+            else if (_guessedLetters.Contains(_guess))
+            {
+                Console.WriteLine($"You have already entered the letter \"{_guess}\" ");
+                continue;
+            }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -96,6 +101,9 @@ public class Hangman
 
             Console.WriteLine();
             Console.WriteLine($"Attempt left: {currentLives}");
+            DisplayHangman.Display(currentLives);
+
+
 
             _guessedLetters.Add(_guess);
 
