@@ -14,16 +14,7 @@ public class Hangman
     {
         _wordList = wordList;
     }
-
-    public int GetRandomNumber(int max)
-    {
-        lock (Getrandom) // synchronize
-        {
-            return Getrandom.Next(0, max);
-        }
-    }
-
-
+    
     public string GetRandomWord()
     {
         var index = GetRandomNumber(_wordList.Count);
@@ -32,6 +23,13 @@ public class Hangman
         return word;
     }
 
+    private static int GetRandomNumber(int max)
+    {
+        lock (Getrandom) // synchronize
+        {
+            return Getrandom.Next(0, max);
+        }
+    }
 
     public void game(string word)
     {
